@@ -17,7 +17,7 @@ getlast : function(){
   return factory.last;
 },
 getfull : function(seperator){
-  return factory.first + seperator +  this.perinst.last;
+  return factory.first + seperator +  factory.last;
 }
 }
 }
@@ -38,8 +38,8 @@ angular.module('myApp', [])
 <body ng-app="myApp">
  <div ng-controller="cont">
    {{inst.getfirst()}}
-   {{inst.getlast()}}
-   {{inst.getfull('@4mmdm')}} </br>
+   {{inst.getlast()}} </br>
+   {{inst.getfull('##')}} </br>
    
    <input type="text" ng-model="insta.first">
    <input type="text" ng-model="insta.last">
