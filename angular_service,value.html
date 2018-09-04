@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"> </script>
+<script>
+// service object  
+var personman = function(info){
+  this.perinst = info;
+}
+//  service object for first name
+personman.prototype.getfirst = function(){
+  return this.perinst.first;
+}
+//  service object for last name
+personman.prototype.getlast = function(){
+  return this.perinst.last;
+}
+//  service object for full name with seperator
+personman.prototype.getfull = function(seperator){
+  return this.perinst.first + seperator +  this.perinst.last;
+}
+// service object 
+
+
+angular.module('myApp', [])
+// value
+.value('info', {
+  first: '' ,
+  last : '',
+})
+// value
+
+// service object instance 
+.service('ser', personman)
+// storing into a service named 'ser'
+
+// including dependencies 'info'-- value , 'ser' -- service 
+ .controller('cont', function($scope, info, ser){
+ info.first= 'sai';
+ info.last = 'teja';
+ 
+  $scope.inst = ser;
+})
+
+// writing first and last properties to 'info' and storing 'ser' instance into inst
+  </script>
+  </head>
+
+
+<body ng-app="myApp">
+ <div ng-controller="cont">
+   first name : {{inst.getfirst()}}    
+  last name :  {{inst.getlast()}} </br>
+  full name :  {{inst.getfull('-')}}
+ 
+   <input type="text" ng-model="inst.perinst.first">
+   <input type="text" ng-model="inst.perinst.last">
+
+  </div> 
+</body>  
+  </html>
+ 
+
