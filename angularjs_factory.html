@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"> </script>
+
+  </head>
+<script>
+  var personman = function(info){
+
+  var factory = info;
+  
+return {
+  getfirst : function(){
+  return factory.first;
+},
+getlast : function(){
+  return factory.last;
+},
+getfull : function(seperator){
+  return factory.first + seperator +  this.perinst.last;
+}
+}
+}
+angular.module('myApp', [])
+.value('info', {
+  first: '' ,
+  last : '',
+})
+.factory('fact', personman)
+ .controller('cont', function($scope, info, fact){
+ info.first= 'sai';
+ info.last = 'teja';
+ $scope.insta= info;
+  $scope.inst = fact;
+})
+  </script>
+
+<body ng-app="myApp">
+ <div ng-controller="cont">
+   {{inst.getfirst()}}
+   {{inst.getlast()}}
+   {{inst.getfull('@4mmdm')}} </br>
+   
+   <input type="text" ng-model="insta.first">
+   <input type="text" ng-model="insta.last">
+
+  </div> 
+</body>  
+  </html>
+ 
+
